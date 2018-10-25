@@ -152,7 +152,7 @@ Try {
 
 		## <Perform Post-Installation tasks here>
 
-		Copy-File -Path '$dirSupportFiles\Config.ini' -Destination 'C:\ProgramData\MAXQDA18\Config.ini'
+		Copy-File -Path '$dirSupportFiles\Config.ini' -Destination 'C:\ProgramData\MAXQDA2018\Config.ini'
 
 		## Display a message at the end of the install
 		If (-not $useDefaultMsi) {
