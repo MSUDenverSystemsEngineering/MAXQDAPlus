@@ -65,9 +65,9 @@ Try {
 	##* VARIABLE DECLARATION
 	##*===============================================
 	## Variables: Application
-	[string]$appVendor = ''
-	[string]$appName = ''
-	[string]$appVersion = ''
+	[string]$appVendor = 'VERBI'
+	[string]$appName = 'MAXQDA Plus'
+	[string]$appVersion = '18'
 	[string]$appArch = ''
 	[string]$appLang = 'EN'
 	[string]$appRevision = '01'
@@ -142,8 +142,7 @@ Try {
 
 		## <Perform Installation tasks here>
 
-        $exitCode = Execute-MSI -Action "Install" -Path "$dirFiles\MAXQDA18_Setup.msi" -Parameters '/QN REBOOT=reallysuppress' -WindowStyle "Hidden" -PassThru
-        If (($exitCode.ExitCode -ne "0") -and ($mainExitCode -ne "3010")) { $mainExitCode = $exitCode.ExitCode }
+        Execute-MSI -Action "Install" -Path "$dirFiles\MAXQDA18_Setup.msi" -Parameters '/QN REBOOT=reallysuppress'
 
 
 		##*===============================================
