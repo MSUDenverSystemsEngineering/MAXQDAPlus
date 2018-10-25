@@ -142,7 +142,7 @@ Try {
 
 		## <Perform Installation tasks here>
 
-        Execute-MSI -Action "Install" -Path "$dirFiles\MAXQDA18_Setup.msi" -Parameters '/QN REBOOT=reallysuppress'
+        Execute-MSI -Action "Install" -Path "$dirFiles\MAXQDA2018_Setup.msi" -Parameters '/QN REBOOT=reallysuppress'
 
 
 		##*===============================================
@@ -151,6 +151,8 @@ Try {
 		[string]$installPhase = 'Post-Installation'
 
 		## <Perform Post-Installation tasks here>
+
+		Copy-File -Path '$dirSupportFiles\Config.ini' -Destination 'C:\ProgramData\MAXQDA18\Config.ini'
 
 		## Display a message at the end of the install
 		If (-not $useDefaultMsi) {
@@ -186,8 +188,7 @@ Try {
 
 		# <Perform Uninstallation tasks here>
 
-		##$exitCode = Execute-Process -Path "" -Parameters "" -WindowStyle "Hidden" -PassThru
-        ##If (($exitCode.ExitCode -ne "0") -and ($mainExitCode -ne "3010")) { $mainExitCode = $exitCode.ExitCode }
+		Execute-MSI -Action "Uninstall" -Path '{5AF62442-1D17-450C-9C8D-F367442AE7DA}'
 
 		##*===============================================
 		##* POST-UNINSTALLATION
