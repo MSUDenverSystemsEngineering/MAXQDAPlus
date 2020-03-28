@@ -67,8 +67,8 @@ Try {
 	## Variables: Application
 	[string]$appVendor = 'VERBI'
 	[string]$appName = 'MAXQDA Plus'
-	[string]$appVersion = '18'
-	[string]$appArch = ''
+	[string]$appVersion = '2020'
+	[string]$appArch = 'x64'
 	[string]$appLang = 'EN'
 	[string]$appRevision = '01'
 	[string]$appScriptVersion = '3.7.0.1'
@@ -128,6 +128,8 @@ Try {
 
 		## <Perform Pre-Installation tasks here>
 
+		## Uninstall MAXQDA 2018 Plus
+		Execute-MSI -Action "Uninstall" -Path '{5AF62442-1D17-450C-9C8D-F367442AE7DA}'
 
 		##*===============================================
 		##* INSTALLATION
@@ -142,7 +144,7 @@ Try {
 
 		## <Perform Installation tasks here>
 
-        Execute-MSI -Action "Install" -Path "$dirFiles\MAXQDA2018_Setup.msi" -Parameters '/QN REBOOT=reallysuppress'
+    Execute-MSI -Action "Install" -Path "$dirFiles\MAXQDA2020_Setup.msi" -Parameters '/QN REBOOT=reallysuppress'
 
 
 		##*===============================================
@@ -152,7 +154,7 @@ Try {
 
 		## <Perform Post-Installation tasks here>
 
-		Copy-File -Path "$dirSupportFiles\Config.ini" -Destination 'C:\ProgramData\MAXQDA2018\Config.ini'
+		Copy-File -Path "$dirSupportFiles\Config.ini" -Destination 'C:\ProgramData\MAXQDA2020\Config.ini'
 
 		## Display a message at the end of the install
 		If (-not $useDefaultMsi) {
@@ -167,7 +169,7 @@ Try {
 		[string]$installPhase = 'Pre-Uninstallation'
 
 		## Show Welcome Message, close Internet Explorer with a 60 second countdown before automatically closing
-		Show-InstallationWelcome -CloseApps 'iexplore' -CloseAppsCountdown 60
+		Show-InstallationWelcome -CloseApps 'maxqda' -CloseAppsCountdown 60
 
 		## Show Progress Message (with the default message)
 		Show-InstallationProgress
@@ -188,7 +190,7 @@ Try {
 
 		# <Perform Uninstallation tasks here>
 
-		Execute-MSI -Action "Uninstall" -Path '{5AF62442-1D17-450C-9C8D-F367442AE7DA}'
+		Execute-MSI -Action "Uninstall" -Path '{F746C67C-4C33-4BE5-BA36-715DC1B93715}'
 
 		##*===============================================
 		##* POST-UNINSTALLATION
